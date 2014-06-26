@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>My awesome Code Fellows Project!</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+
+       
+    </head>
+
+<body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+   <div class="main">
+     
+      <h1>Twenty One Game</h1>
+
+      <h2>Press the button to play!</h2>
+      <h3>Press the reset button to play again!</h3>
+      
+    
+        <button id = "play">
+        Make magic happen!
+        </button>
+
+        <button id = "reset">Reset</button>
+
+      <section>
+        
+        <p id="results"><i></i></p>
+
+      </section>
+      <p>By: Joaquin Guardado@codefellows foundations 01</p>
+
+   </div>
+
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script>
+//Card Constructor
+function Card (s,n) {
+  var suit =  s;
+  var number = n;
+//Method to get number
+  this.getNumber = function () {
+    return number;
+  };
+//Method to get suit  
+  this.getSuit = function () {
+    return suit;
+  };
+//Method to get value of the card  
+  this.getValue = function () {
+      if (number > 11) {
+        return 10;
+      } else if (number === 1) {
+        return 11;
+      } else {
+        return number;
+    }
+  };
+
+}
+//Deal the cards
+var deal = function () {
+  var ranNum = Math.floor(Math.random () * 13) + 1;
+  var ranSuit = Math.floor(Math.random () * 4) + 1;
+    return new Card (ranSuit, ranNum);
+};
+
+//Hand constructor
+function Hand () {
+  var card1 = deal();
+  var card2 = deal();
+  this.score = function () {
+    var score1 = card1.getValue();
+    var score2 = card2.getValue();
+      return score1 + score2;
+  };
+}
+
+//Hand
+var playerOne = new Hand();
+var dealer = new Hand();
+
+//New Player
+  var newPlayer = ["Bob", "Joe", "Scarface", "Bugs"];
+  
+  var pickPlayer = function() {
+  var challenger = newPlayer[Math.floor(Math.random() * 4)];
+  return challenger;
+};
+
+  $(document).ready(function(){
+  $("#play").click(function(){
+    $("#results").prepend(pickPlayer() + " has a score of: " + playerOne.score() + "<br>" + "Dealer has a score of " + dealer.score() + " <br> <br>" + score());
+      
+  });
+
+  $("#reset").click(function() {
+   location.reload();
+  
+ });
+  
+});
+
+  console.log("Player " + pickPlayer() + " score: " + playerOne.score() + "\nDealer score: " + dealer.score());
+
+function score () {
+ 
+  if (playerOne.score() > dealer.score()) {
+    return "Player wins";
+  }
+  else if (playerOne.score() < dealer.score()) {
+    return "Dealer wins";
+  }
+  else {
+    return "It's a tie!";
+  }
+
+}
+
+</script>
+ 
+</body>

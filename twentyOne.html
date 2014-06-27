@@ -4,6 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -28,13 +29,11 @@
 
       <h2>Press the button to play!</h2>
       <h3>Press the reset button to play again!</h3>
-      
     
-        <button id = "play">
-        Make magic happen!
-        </button>
+    
+        <input type = "button" id = "play" value = "Click me!"/>
 
-        <button id = "reset">Reset</button>
+        <input type = "button" id = "reset" value = "Reset"/>
 
       <section>
         
@@ -102,21 +101,20 @@ var dealer = new Hand();
   var challenger = newPlayer[Math.floor(Math.random() * 4)];
   return challenger;
 };
-
   $(document).ready(function(){
   $("#play").click(function(){
-    $("#results").prepend(pickPlayer() + " has a score of: " + playerOne.score() + "<br>" + "Dealer has a score of " + dealer.score() + " <br> <br>" + score());
-      
+  $("#results").append(pickPlayer() + " has a score of: " + playerOne.score() + "<br>" + "Dealer has a score of " + dealer.score() + " <br> <br>" + score());
+  $(this).attr("disabled", true);
+  $(this).val("No more clicking!");
   });
-
   $("#reset").click(function() {
-   location.reload();
-  
+  location.reload();
+  $("#play").attr("disabled", false);
+  $("#play").val("Click");
  });
-  
 });
 
-  console.log("Player " + pickPlayer() + " score: " + playerOne.score() + "\nDealer score: " + dealer.score());
+console.log("Player " + pickPlayer() + " score: " + playerOne.score() + "\nDealer score: " + dealer.score());
 
 function score () {
  
@@ -130,8 +128,10 @@ function score () {
     return "It's a tie!";
   }
 
-}
+};
 
 </script>
  
 </body>
+
+</html>

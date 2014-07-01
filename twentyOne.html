@@ -119,7 +119,7 @@ console.log("Player " + pickPlayer() + " score: " + playerOne.score() + "\nDeale
 function score () {
  
   if (playerOne.score() > dealer.score()) {
-    return "Player wins";
+    return "Player " + pickPlayer() + " wins";
   }
   else if (playerOne.score() < dealer.score()) {
     return "Dealer wins";

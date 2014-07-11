@@ -95,31 +95,31 @@ var playerOne = new Hand();
 var dealer = new Hand();
 
 //New Player
+//Removed function and assigned a value to pickPlayer
+
   var newPlayer = ["Bob", "Joe", "Scarface", "Bugs"];
   
-  var pickPlayer = function() {
-  var challenger = newPlayer[Math.floor(Math.random() * 4)];
-  return challenger;
-};
-  $(document).ready(function(){
-  $("#play").click(function(){
-  $("#results").append(pickPlayer() + " has a score of: " + playerOne.score() + "<br>" + "Dealer has a score of " + dealer.score() + " <br> <br>" + score());
-  $(this).attr("disabled", true);
-  $(this).val("No more clicking!");
+  var pickPlayer = newPlayer[Math.floor(Math.random() * 4)];
+  
+    $(document).ready(function(){
+    $("#play").click(function(){
+    $("#results").append(pickPlayer + " has a score of: " + playerOne.score() + "<br>" + "Dealer has a score of " + dealer.score() + " <br> <br>" + score());
+    $(this).attr("disabled", true);
+    $(this).val("No more clicking!");
+    });
+    $("#reset").click(function() {
+    location.reload();
+    $("#play").attr("disabled", false);
+    $("#play").val("Click");
+   });
   });
-  $("#reset").click(function() {
-  location.reload();
-  $("#play").attr("disabled", false);
-  $("#play").val("Click");
- });
-});
 
-console.log("Player " + pickPlayer() + " score: " + playerOne.score() + "\nDealer score: " + dealer.score());
+console.log("Player " + pickPlayer + " score: " + playerOne.score() + "\nDealer score: " + dealer.score());
 
 function score () {
  
   if (playerOne.score() > dealer.score()) {
-    return "Player " + pickPlayer() + " wins";
+    return "Player " + pickPlayer + " wins";
   }
   else if (playerOne.score() < dealer.score()) {
     return "Dealer wins";
